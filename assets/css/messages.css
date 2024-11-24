@@ -1,0 +1,162 @@
+/* Estilo geral */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Contêiner principal */
+.messages-container {
+    display: flex;
+    flex: 1; /* Preenche todo o espaço restante */
+    height: calc(100vh - 50px); /* Altura dinâmica, subtraindo o cabeçalho */
+}
+
+/* Sidebar (contatos) */
+.sidebar {
+    flex: 0 0 25%;
+    background-color: #6a0dad; /* Roxo */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    overflow-y: auto; /* Adiciona rolagem para a lista de contatos */
+}
+
+.sidebar h2 {
+    margin: 0;
+    text-align: center;
+}
+
+.sidebar input {
+    margin: 10px 0;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    width: 90%;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sidebar li:hover {
+    background-color: #4e0c91;
+}
+
+/* Chat */
+.chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f7f7;
+}
+
+#chat-header {
+    flex: 0 0 10%; /* Ocupa 10% da altura da tela */
+    background-color: #6a0dad; /* Roxo */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#chat-messages {
+    flex: 1;
+    overflow-y: auto; /* Adiciona rolagem para o histórico de mensagens */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo das mensagens */
+.message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    max-width: 70%; /* Limita a largura das mensagens */
+}
+
+.message.sent {
+    align-self: flex-end;
+    justify-content: flex-end;
+}
+
+.message.received {
+    align-self: flex-start;
+}
+
+.message .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #ddd;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message .text {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #6a0dad; /* Roxo */
+    color: white;
+    word-wrap: break-word;
+}
+
+.message.sent .text {
+    background-color: #4e0c91;
+}
+
+.message img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Formulário de envio */
+#message-form {
+    flex: 0 0 5%; /* Mantém o formulário fixo na parte inferior */
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+    border-top: 1px solid #ddd;
+}
+
+#message-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#message-form button {
+    padding: 10px 20px;
+    background-color: #6a0dad; /* Roxo */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#message-form button:hover {
+    background-color: #4e0c91;
+}
