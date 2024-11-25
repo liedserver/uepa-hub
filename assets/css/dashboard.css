@@ -14,6 +14,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .post-form textarea {
     width: 100%;
     padding: 10px;
@@ -24,9 +25,11 @@
     height: 100px;
     font-size: 14px;
 }
+
 .post-form input[type="file"] {
     margin-bottom: 15px;
 }
+
 .post-form button {
     display: block;
     width: 100%;
@@ -38,6 +41,7 @@
     font-size: 16px;
     cursor: pointer;
 }
+
 .post-form button:hover {
     background: #0056b3;
 }
@@ -160,28 +164,37 @@
     gap: 10px;
 }
 
+/* Container da seção de curtidas */
 .like-section {
     display: flex;
     align-items: center;
-    gap: 5px;
-    font-size: 16px;
+    gap: 8px;
 }
 
+/* Botão de curtida (estado padrão - não curtido) */
 .like-btn {
-    background: transparent;
+    background: none;
     border: none;
-    cursor: pointer;
     font-size: 20px;
-    color: #007bff;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.3s ease;
+    color: #ccc; /* Cinza claro por padrão */
 }
 
+/* Estado curtido */
+.like-btn.liked {
+    color: #007bff; /* Azul quando curtido */
+}
+
+/* Hover (passar o mouse) */
 .like-btn:hover {
-    color: #0056b3;
+    transform: scale(1.2); /* Aumenta o tamanho ao passar o mouse */
 }
 
+/* Contador de curtidas */
 .like-count {
     font-size: 14px;
-    color: #555;
+    color: #333; /* Cor do texto do contador */
 }
 
 /* Comentários */
@@ -241,3 +254,91 @@
     font-size: 14px;
     color: #555;
 }
+
+
+/* Modal */
+.modal {
+    display: none; /* Oculto por padrão, só é exibido quando ativado */
+    position: fixed; /* Fixa o modal na tela */
+    z-index: 1000; /* Garante que o modal fique acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total da tela */
+    height: 100%; /* Altura total da tela */
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo semitransparente */
+}
+
+/* Conteúdo do Modal */
+.modal-content {
+    background-color: #fff; /* Cor de fundo do conteúdo do modal */
+    margin: 10% auto; /* Centraliza o conteúdo do modal na tela */
+    padding: 20px; /* Espaço interno ao redor do conteúdo */
+    border: 1px solid #ddd; /* Borda suave em torno do conteúdo */
+    width: 30%; /* Define a largura do modal */
+    border-radius: 10px; /* Cantos arredondados */
+    text-align: center; /* Centraliza o texto dentro do modal */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombras ao redor do modal */
+    position: relative; /* Permite que os elementos dentro sejam posicionados em relação ao modal */
+}
+
+/* Botão de Fechar (X) */
+.modal-close {
+    color: #aaa; /* Cor do 'X' */
+    position: absolute; /* Posiciona o 'X' no canto superior direito */
+    top: 5px; /* Distância do topo */
+    right: 15px; /* Distância da borda direita */
+    font-size: 40px; /* Tamanho do texto */
+    font-weight: bold; /* Deixa o texto em negrito */
+    cursor: pointer; /* Cursor em forma de mãozinha */
+}
+
+.modal-close:hover {
+    color: #000; /* Muda a cor do 'X' quando passa o mouse por cima */
+}
+
+/* Contêiner dos Botões */
+.modal-actions {
+    margin-top: 20px; /* Espaço entre o conteúdo do modal e os botões */
+    display: flex; /* Flexbox para organizar os botões */
+    flex-direction: row; /* Alinha os botões lado a lado */
+    justify-content: space-between; /* Garante o espaçamento entre os botões */
+    gap: 10px; /* Espaço entre os botões */
+}
+
+/* Botão Excluir */
+.modal-actions .btn-delete {
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    border-radius: 5px; /* Cantos arredondados do botão */
+    font-size: 14px; /* Tamanho da fonte */
+    cursor: pointer; /* Cursor em forma de mãozinha */
+    text-align: center; /* Alinha o texto do botão no centro */
+    width: 100%; /* Largura do botão para garantir que caiba ao lado do "Cancelar" */
+    background-color: #ff4d4d; /* Cor de fundo do botão "Excluir" */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda do botão */
+    font-weight: bold; /* Deixa o texto em negrito */
+}
+
+.modal-actions .btn-delete:hover {
+    background-color: #ff1a1a; /* Cor do botão "Excluir" ao passar o mouse */
+}
+
+/* Botão Cancelar */
+.modal-actions .btn-cancel {
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    border-radius: 5px; /* Cantos arredondados do botão */
+    font-size: 14px; /* Tamanho da fonte */
+    cursor: pointer; /* Cursor em forma de mãozinha */
+    text-align: center; /* Alinha o texto do botão no centro */
+    width: 45%; /* Largura do botão para garantir que caiba ao lado do "Excluir" */
+    background-color: #ddd; /* Cor de fundo do botão "Cancelar" */
+    color: black; /* Cor do texto */
+    border: none; /* Remove a borda do botão */
+    font-weight: bold; /* Deixa o texto em negrito */
+    top: 175px
+}
+
+.modal-actions .btn-cancel:hover {
+    background-color: #bbb; /* Cor do botão "Cancelar" ao passar o mouse */
+}
+

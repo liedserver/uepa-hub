@@ -7,19 +7,22 @@ if (!isset($_SESSION['user_id'])) {
     die("Acesso negado.");
 }
 
-$user_id = $_SESSION['user_id'];
-$post_id = $_POST['post_id'];
-$comment = $_POST['comment'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $postId = $_POST['post_id'];
+    $comment = trim($_POST['comment']);
+    $userId = $_SESSION['user_id'];
 
-// Insere o comentário
-$query = $conn->prepare("INSERT INTO comments (user_id, post_id, comment) VALUES (?, ?, ?)");
-$query->bind_param("iis", $user_id, $post_id, $comment);
+    if (!empty($comment)) {
+        $query = $conn->prepare("INSERT INTO comments (post_id, user_id, comment, created_at) VALUES (?, ?, ?, NOW())");
+        $query->bind_param("iis", $postId, $userId, $comment);
 
-if ($query->execute()) {
-    echo "success";
-} else {
-    echo "Erro ao adicionar comentário.";
+        if ($query->execute()) {
+            echo "success";
+        } else {
+            echo "error";
+        }
+    } else {
+        echo "empty";
+    }
 }
-
-$conn->close();
 ?>

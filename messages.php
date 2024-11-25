@@ -12,9 +12,10 @@ include 'includes/db.php';
 <div class="messages-container">
     <div class="sidebar">
         <h2>Contatos</h2>
+        <button id="new-chat">Novo Chat</button>
         <input type="text" id="search" placeholder="Buscar contatos...">
         <ul id="contact-list">
-            <!-- Lista de contatos será carregada aqui -->
+            <!-- Contatos aparecerão aqui -->
         </ul>
     </div>
     <div class="chat">
@@ -22,7 +23,7 @@ include 'includes/db.php';
             <h2>Selecione um contato</h2>
         </div>
         <div id="chat-messages">
-            <!-- Mensagens serão carregadas aqui -->
+            <!-- Mensagens aparecerão aqui -->
         </div>
         <form id="message-form">
             <input type="text" id="message-input" placeholder="Digite sua mensagem..." autocomplete="off">
@@ -31,6 +32,7 @@ include 'includes/db.php';
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function () {
     function loadContacts() {
@@ -42,36 +44,51 @@ $(document).ready(function () {
     function loadMessages(userId) {
         $.get('fetch_messages.php', { user_id: userId }, function (data) {
             $('#chat-messages').html(data);
+            $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
         });
     }
 
     $('#contact-list').on('click', 'li', function () {
-        const userId = $(this).data('user-id');
-        $('#chat-header h2').text($(this).text());
-        loadMessages(userId);
-        $('#message-form').data('user-id', userId);
+    const userId = $(this).data('user-id');
+    const userName = $(this).text();
+
+    // Fetch and display user photo in header with the name
+    $.get('fetch_user_photo.php', { user_id: userId }, function (data) {
+        $('#chat-header').html(`
+            <img src="${data}" alt="Foto do Usuário" class="header-photo">
+            <h2>${userName}</h2>
+        `);
     });
+
+    loadMessages(userId);
+    $('#message-form').data('user-id', userId);
+});
+
+
 
     $('#message-form').submit(function (e) {
         e.preventDefault();
-
         const userId = $(this).data('user-id');
         const message = $('#message-input').val();
 
-        if (message.trim() !== '') {
+        if (message.trim()) {
             $.post('send_message.php', { user_id: userId, message: message }, function (response) {
-                if (response === "success") {
+                if (response === 'success') {
                     $('#message-input').val('');
-                    loadMessages(userId); // Atualiza a lista de mensagens
-                } else if (response === "empty_message") {
-                    alert("A mensagem não pode ser vazia.");
+                    loadMessages(userId);
                 } else {
-                    alert("Erro ao enviar a mensagem.");
+                    alert(response);
                 }
             });
         } else {
-            alert("Digite uma mensagem.");
+            alert('Digite uma mensagem.');
         }
+    });
+
+    $('#new-chat').click(function () {
+        $.get('fetch_contacts.php', function (data) {
+            $('#contact-list').html(data);
+        });
     });
 
     loadContacts();

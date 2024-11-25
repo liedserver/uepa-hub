@@ -1,77 +1,24 @@
+/* Ajustes para a barra de navegação */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: sticky; /* Fixa o header no topo da página */
-    top: 0;
-    z-index: 1000;
+    background-color: #007bff; /* Azul personalizado */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra leve */
 }
 
-.navbar .logo h1 {
-    margin: 0;
-    font-size: 20px;
-    color: white;
+.navbar-brand {
+    color: #fff !important; /* Deixa o texto da logo branco */
 }
 
-.navbar a {
-    color: white;
-    text-decoration: none;
-    background: transparent;
-    padding: 5px 10px;
-    border-radius: 3px;
-    margin-left: 10px;
+.navbar-brand:hover {
+    color: #f0f0f0 !important; /* Texto branco ao passar o mouse */
 }
 
-.navbar a:hover {
-    background: #0056b3;
-}
-
-.profile-dropdown {
-    position: relative;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.profile-pic {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-}
-
+/* Dropdown do perfil */
 .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 50px;
-    right: 0;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 2000;
-    text-align: left;
+    border-radius: 8px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
-.dropdown-menu.show {
-    display: block;
-}
-
-.dropdown-menu a {
-    padding: 10px 15px;
-    display: block;
-    color: #333;
-    text-decoration: none;
-}
-
-.dropdown-menu a:hover {
-    background: #f4f4f4;
-    color: #007bff;
+/* Imagem do perfil */
+.profile-pic {
+    border: 2px solid #fff; /* Borda branca ao redor da foto */
 }

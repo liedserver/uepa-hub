@@ -8,7 +8,8 @@ if (!isset($_SESSION['user_id'])) {
 // Verificar se o usuário é um administrador
 $is_admin = $_SESSION['is_admin'] ?? false;
 if (!$is_admin) {
-    echo "Acesso negado. Apenas administradores podem criar eventos.";
+    $_SESSION['modal_message'] = "Acesso negado. Apenas administradores podem criar eventos.";
+    header("Location: create_event.php");
     exit;
 }
 
@@ -23,12 +24,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query->bind_param("sss", $titulo, $descricao, $data_evento);
 
     if ($query->execute()) {
-        echo "Evento criado com sucesso! <a href='calendar.php'>Voltar para o Calendário</a>";
+        $_SESSION['modal_message'] = "Evento criado com sucesso!";
     } else {
-        echo "Erro ao criar evento: " . $conn->error;
+        $_SESSION['modal_message'] = "Erro ao criar evento: " . $conn->error;
     }
 
     $query->close();
     $conn->close();
+
+    // Redireciona de volta para a página de criação de eventos
+    header("Location: create_event.php");
+    exit;
 }
 ?>

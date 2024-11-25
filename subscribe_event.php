@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+    echo "Erro: usuário não autenticado.";
     exit;
 }
 
@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo "Erro ao inscrever-se no evento.";
         }
+        $insert_query->close();
     }
 
     $check_query->close();

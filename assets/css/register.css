@@ -1,72 +1,64 @@
-/* Centraliza a página */
 body {
-    background-color: #f4f4f9;
+    background-color: #f8f9fa; /* Fundo branco */
+    color: #333; /* Texto escuro */
+    font-family: Arial, sans-serif;
+}
+.register-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-/* Container do formulário */
-.register-container {
-    background: white;
+    min-height: 100vh;
     padding: 20px;
+}
+.register-form {
+    background-color: #fff; /* Fundo do formulário branco */
+    padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
     width: 100%;
     max-width: 400px;
     text-align: center;
 }
-
-/* Título */
-.register-container h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
+.register-form h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
     color: #007bff;
 }
-
-/* Estilização dos inputs */
-.register-container input {
-    width: 100%;
+.register-form input {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-/* Botão */
-.register-container button {
     width: 100%;
-    padding: 10px;
-    background: #007bff;
-    color: white;
+}
+.register-form input:focus {
+    border-color: #007bff;
+    outline: none;
+    background-color: #fff;
+}
+.register-form button {
+    background-color: #007bff;
+    color: #fff;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+    padding: 10px;
+    width: 100%;
     font-weight: bold;
-    transition: background 0.3s ease;
+    cursor: pointer;
 }
-
-.register-container button:hover {
-    background: #0056b3;
+.register-form button:hover {
+    background-color: #0056b3;
 }
-
-/* Link para login */
-.register-container p {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #333;
+.register-form p {
+    margin-top: 10px;
+    color: #555;
 }
-
-.register-container a {
+.register-form a {
     color: #007bff;
     text-decoration: none;
 }
-
-.register-container a:hover {
+.register-form a:hover {
     text-decoration: underline;
 }

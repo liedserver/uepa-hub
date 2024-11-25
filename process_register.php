@@ -13,7 +13,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("As senhas não coincidem. <a href='register.php'>Voltar</a>");
     }
 
-    // Verifica se a matrícula já existe
+    // Verifica se a matrícula está na tabela de matrículas válidas
+    $query = $conn->prepare("SELECT id FROM matriculas_validas WHERE matricula = ?");
+    $query->bind_param("s", $matricula);
+    $query->execute();
+    $query->store_result();
+
+    if ($query->num_rows === 0) {
+        die("Matrícula inválida. <a href='register.php'>Voltar</a>");
+    }
+
+    $query->close();
+
+    // Verifica se a matrícula já está cadastrada como usuário
     $query = $conn->prepare("SELECT id FROM usuarios WHERE matricula = ?");
     $query->bind_param("s", $matricula);
     $query->execute();

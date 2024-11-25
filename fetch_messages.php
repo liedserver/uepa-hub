@@ -2,67 +2,38 @@
 session_start();
 include 'includes/db.php';
 
-if (!isset($_SESSION['user_id'])) {
-    http_response_code(403);
-    echo "Usuário não autorizado.";
-    exit;
-}
-
-if (!isset($_GET['user_id'])) {
-    http_response_code(400);
-    echo "ID do usuário não especificado.";
-    exit;
+if (!isset($_SESSION['user_id']) || !isset($_GET['user_id'])) {
+    exit('Erro na solicitação.');
 }
 
 $currentUserId = $_SESSION['user_id'];
 $chatUserId = $_GET['user_id'];
 
-// Consulta as mensagens entre os dois usuários
+// Consulta para obter mensagens entre os dois usuários
 $query = $conn->prepare("
-    SELECT 
-        messages.*, 
-        sender.id AS sender_id, 
-        sender.foto AS sender_foto, 
-        receiver.id AS receiver_id, 
-        receiver.foto AS receiver_foto 
-    FROM messages
-    JOIN usuarios AS sender ON messages.sender_id = sender.id
-    JOIN usuarios AS receiver ON messages.receiver_id = receiver.id
-    WHERE 
-        (messages.sender_id = ? AND messages.receiver_id = ?)
-        OR (messages.sender_id = ? AND messages.receiver_id = ?)
-    ORDER BY messages.created_at ASC
+    SELECT m.sender_id, m.receiver_id, m.content, m.created_at, u.foto 
+    FROM messages m
+    JOIN usuarios u ON u.id = m.sender_id
+    WHERE (m.sender_id = ? AND m.receiver_id = ?) OR (m.sender_id = ? AND m.receiver_id = ?)
+    ORDER BY m.created_at ASC
 ");
 $query->bind_param("iiii", $currentUserId, $chatUserId, $chatUserId, $currentUserId);
 $query->execute();
 $result = $query->get_result();
 
-$output = '';
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $isSender = ($row['sender_id'] == $currentUserId);
+        $class = $isSender ? 'sent' : 'received';
+        $foto = ($isSender) ? '' : "<img src='uploads/" . htmlspecialchars($row['foto']) . "' alt='Foto' class='user-photo'>";
 
-// Gera o HTML das mensagens
-while ($message = $result->fetch_assoc()) {
-    $isSender = $message['sender_id'] == $currentUserId; // Verifica se é o usuário logado
-    $messageClass = $isSender ? 'sent' : 'received';
-
-    // Determina a foto correta com base no remetente (eu) ou destinatário (outro usuário)
-    $photoPath = $isSender ? $message['sender_foto'] : $message['receiver_foto'];
-    $photoUrl = (!empty($photoPath) && file_exists("uploads/" . $photoPath))
-        ? "uploads/" . htmlspecialchars($photoPath)
-        : "assets/img/default.png";
-
-    // Gera a estrutura HTML da mensagem
-    $output .= '<div class="message ' . $messageClass . '">';
-    if (!$isSender) {
-        // Exibe a foto do outro usuário para mensagens recebidas
-        $output .= '<img src="' . $photoUrl . '" alt="Foto de Perfil" class="profile-pic">';
+        echo "<div class='message {$class}'>";
+        echo $foto;
+        echo "<div class='text'>" . htmlspecialchars($row['content']) . "</div>";
+        echo "<span class='timestamp'>" . date("d/m, H:i", strtotime($row['created_at'])) . "</span>";
+        echo "</div>";
     }
-    $output .= '<div class="text">' . htmlspecialchars($message['content']) . '</div>';
-    if ($isSender) {
-        // Exibe a sua própria foto para mensagens enviadas
-        $output .= '<img src="' . $photoUrl . '" alt="Foto de Perfil" class="profile-pic">';
-    }
-    $output .= '</div>';
+} else {
+    echo "<p>Nenhuma mensagem encontrada.</p>";
 }
-
-echo $output;
 ?>

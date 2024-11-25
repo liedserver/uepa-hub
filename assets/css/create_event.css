@@ -1,12 +1,29 @@
-.container h2 {
-    text-align: center;
-    color: #007bff;
-    margin-bottom: 20px;
+body {
+    background-color: #f7f9fc; /* Fundo claro */
 }
-form label {
+
+h2 {
+    font-size: 2rem;
     font-weight: bold;
-    color: #333;
 }
-form input, form textarea, form button {
-    font-size: 14px;
+
+.container {
+    max-width: 600px; /* Define a largura máxima */
+    margin: 0 auto; /* Centraliza */
+    padding: 0 15px; /* Adiciona um pouco de espaçamento nas laterais */
+}
+
+.form-control {
+    font-size: 1rem;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: none; /* Impede redimensionamento */
+}
+
+.btn {
+    font-size: 1.2rem;
 }

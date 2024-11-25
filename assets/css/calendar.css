@@ -1,32 +1,52 @@
 .calendar-container {
-    width: 80%;
-    margin: 50px auto;
-    text-align: center;
+    margin-top: 20px;
+    max-width: 1400px; /* Aumenta a largura máxima do bloco */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
-.calendar-container h2 {
-    color: #007bff;
-    margin-bottom: 20px;
-}
-.calendar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
+
 .event {
-    background: #fff;
+    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 15px;
-    width: 300px;
-    text-align: left;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
 }
+
+.event:hover {
+    transform: scale(1.03);
+}
+
 .event h3 {
-    font-size: 20px;
+    font-size: 1.5rem;
     color: #333;
 }
-.event button {
-    background: #007bff;
-    color: white;
+
+.event p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.event .btn {
+    width: 100%;
+    font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+    .col-md-6 {
+        flex: 0 0 50%; /* Ajusta para duas colunas em telas médias */
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-lg-4 {
+        flex: 0 0 33.3333%; /* Ajusta para três colunas em telas grandes */
+        max-width: 33.3333%;
+    }
 }

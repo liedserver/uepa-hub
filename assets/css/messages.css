@@ -1,162 +1,106 @@
-/* Estilo geral */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-    color: #333;
-}
-
-/* Contêiner principal */
 .messages-container {
     display: flex;
-    flex: 1; /* Preenche todo o espaço restante */
-    height: calc(100vh - 50px); /* Altura dinâmica, subtraindo o cabeçalho */
+    height: 100vh;
 }
 
-/* Sidebar (contatos) */
 .sidebar {
-    flex: 0 0 25%;
-    background-color: #6a0dad; /* Roxo */
-    color: #fff;
-    display: flex;
-    flex-direction: column;
+    width: 25%;
+    border-right: 1px solid #ccc;
     padding: 10px;
-    overflow-y: auto; /* Adiciona rolagem para a lista de contatos */
+    background-color: #f9f9f9;
 }
 
-.sidebar h2 {
-    margin: 0;
-    text-align: center;
-}
-
-.sidebar input {
-    margin: 10px 0;
-    padding: 8px;
-    border-radius: 5px;
-    border: none;
-    width: 90%;
-}
-
-.sidebar ul {
+#contact-list {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
-.sidebar li {
+#contact-list li {
     padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    border-bottom: 1px solid #ddd;
 }
 
-.sidebar li:hover {
-    background-color: #4e0c91;
+#contact-list li:hover {
+    background-color: #f5f5f5;
 }
 
-/* Chat */
 .chat {
-    flex: 1;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background-color: #f7f7f7;
 }
 
 #chat-header {
-    flex: 0 0 10%; /* Ocupa 10% da altura da tela */
-    background-color: #6a0dad; /* Roxo */
-    color: white;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 10px;
+    gap: 10px;
 }
+
+#chat-header .header-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#chat-header h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
 
 #chat-messages {
-    flex: 1;
-    overflow-y: auto; /* Adiciona rolagem para o histórico de mensagens */
+    flex-grow: 1;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
+    overflow-y: auto;
+    background: #f9f9f9;
 }
 
-/* Estilo das mensagens */
 .message {
     display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    max-width: 70%; /* Limita a largura das mensagens */
+    margin: 10px 0;
+    align-items: flex-end;
 }
 
 .message.sent {
-    align-self: flex-end;
     justify-content: flex-end;
 }
 
 .message.received {
-    align-self: flex-start;
+    justify-content: flex-start;
 }
 
-.message .profile-pic {
+.message .user-photo {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
-    background-color: #ddd;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .message .text {
+    max-width: 60%;
     padding: 10px;
     border-radius: 10px;
-    background-color: #6a0dad; /* Roxo */
-    color: white;
-    word-wrap: break-word;
+    font-size: 14px;
 }
 
 .message.sent .text {
-    background-color: #4e0c91;
-}
-
-.message img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Formulário de envio */
-#message-form {
-    flex: 0 0 5%; /* Mantém o formulário fixo na parte inferior */
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    background-color: white;
-    border-top: 1px solid #ddd;
-}
-
-#message-input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-right: 10px;
-}
-
-#message-form button {
-    padding: 10px 20px;
-    background-color: #6a0dad; /* Roxo */
+    background-color: #007bff;
     color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    border-radius: 10px 0 10px 10px;
 }
 
-#message-form button:hover {
-    background-color: #4e0c91;
+.message.received .text {
+    background-color: #f1f1f1;
+    color: black;
+    border-radius: 0 10px 10px 10px;
+}
+
+.timestamp {
+    font-size: 12px;
+    color: #999;
+    margin-top: 5px;
 }
