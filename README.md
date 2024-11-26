@@ -1,7 +1,7 @@
 # uepa-hub
-## Sistema Web de Rede Social para Aplicação em Contexto Universitário
+### Sistema Web de Rede Social para Aplicação em Contexto Universitário
 
-### Funcionalidades presentes no Sistema
+#### Funcionalidades presentes no Sistema
 
 1. Cadastro e Login: 
 Sistema de registro para novos usuários (estudantes, professores, administradores).
@@ -22,7 +22,7 @@ Funcionalidade para se inscrever em eventos e receber lembretes.
 Mensagens diretas entre usuários, com histórico de conversas.
 Opção de envio de arquivos e links.
 
-### Funcionalidades em Desenvolvimento
+#### Funcionalidades em Desenvolvimento
 1. Grupos e Fóruns:
 Criação de grupos de estudo e fóruns de discussão.
 Possibilidade de interagir por meio de postagens, comentários e mensagens diretas.
@@ -32,3 +32,7 @@ Sistema de notificações em tempo real para atualizações, eventos e interaç�
 Notificações personalizáveis com opções de escolha do que receber.
 Biblioteca de Recursos:Acesso a materiais de estudo, artigos e documentos relevantes.
 Funcionalidade para upload e download de documentos.
+
+
+### Instalações
+#### PRÉ REQUISITOS
