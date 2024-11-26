@@ -1,6 +1,6 @@
 .messages-container {
     display: flex;
-    height: 100vh;
+    height: 93vh;
 }
 
 .sidebar {
@@ -103,4 +103,37 @@
     font-size: 12px;
     color: #999;
     margin-top: 5px;
+}
+
+
+#message-form {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+#message-input {
+    flex: 1; /* O input ocupará o espaço restante */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px; /* Espaço entre o input e o botão */
+    font-size: 14px;
+}
+
+#message-form button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    white-space: nowrap; /* Impede quebra de texto no botão */
+}
+
+#message-form button:hover {
+    background-color: #0056b3;
 }
