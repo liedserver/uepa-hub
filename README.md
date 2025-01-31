@@ -32,7 +32,3 @@ Sistema de notificações em tempo real para atualizações, eventos e interaç�
 Notificações personalizáveis com opções de escolha do que receber.
 Biblioteca de Recursos:Acesso a materiais de estudo, artigos e documentos relevantes.
 Funcionalidade para upload e download de documentos.
-
-
-### Instalações
-#### Pré Requisitos
